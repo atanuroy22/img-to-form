@@ -1,0 +1,43 @@
+{
+    "formStart": {
+        "MBBS COURSE IN SESSION": "2024 - 2029"
+    },
+    "studentDetails": {
+        "NAME": "SUKHENDU PATRA",
+        "BLOOD GROUP": "B+",
+        "DATE OF BIRTH": "24/08/1992",
+        "PLACE OF BIRTH": "KOLKATANATIONALITY INDIAN",
+        "CONTACT NO": "9734321407",
+        "MARITAL STATUS": "MARRIED",
+        "RELIGION": "HINDU",
+        "CASTE": "GENERAL",
+        "GENDER": "MALE",
+        "MOTHERTOUNGE": "BENGALI",
+        "EMAILID": "SUKHENDUPATRA 2011@ GMAIL. COM"
+    },
+    "permanent": {
+        "P.O.": "UTTARPARA",
+        "P.S.": "UTTARPARA",
+        "DISTRICT": "HOO GHLY",
+        "STATE": "WEST BENGAL",
+        "PINCODE": "",
+        "ADDRESS DETAILS (PRESENTADDRESS)": "",
+        "PRESENT ADDRESS": "SAME",
+        "P.O._2": "",
+        "P.S._2": "",
+        "DISTRICT_2": "",
+        "STATE_2": "",
+        "PINCODE_2": ""
+    },
+    "present": {},
+    "parentDetails": {
+        "FATHER'S NAME": "TARAK NATH PATRA",
+        "OCCUPATION": "",
+        "MOBILE NO": "9734321407",
+        "EMAIL-ID": "",
+        "MOTHER'S NAME": "JAYA SHREE PATRA",
+        "OCCUPATION_2": "\u2014",
+        "MOBILE NO.": "700372407",
+        "EMAIL-ID_2": ""
+    }
+}
