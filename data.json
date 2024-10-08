@@ -1,43 +1,102 @@
 {
     "formStart": {
-        "MBBS COURSE IN SESSION": "2024 - 2029"
+        "FORM NO.": "121"
     },
     "studentDetails": {
-        "NAME": "SUKHENDU PATRA",
-        "BLOOD GROUP": "B+",
-        "DATE OF BIRTH": "24/08/1992",
-        "PLACE OF BIRTH": "KOLKATANATIONALITY INDIAN",
-        "CONTACT NO": "9734321407",
-        "MARITAL STATUS": "MARRIED",
+        "NAME": "PUJA SAHA",
+        "DATE OF BIRTH": "18.10.2024",
+        "PLACE OF BIRTH": "ALIPURDUAR",
+        "BLOOD GROUP": "A+VE",
+        "NATIONALITY": "INDIAN",
+        "CONTACT NO": "860940 6684",
+        "MARITAL STATUS": "UNMARRIED",
         "RELIGION": "HINDU",
         "CASTE": "GENERAL",
-        "GENDER": "MALE",
+        "GENDER": "FEMALE",
         "MOTHERTOUNGE": "BENGALI",
-        "EMAILID": "SUKHENDUPATRA 2011@ GMAIL. COM"
+        "EMAIL ID": "PUJASHAHA0018@GMAIL.COM"
     },
-    "permanent": {
-        "P.O.": "UTTARPARA",
-        "P.S.": "UTTARPARA",
-        "DISTRICT": "HOO GHLY",
+    "permenent": {
+        "PERMANENT ADDRESS": "48/26 MISSION PARA ROAD",
+        "P.O.": "RAHARA",
+        "P.S.": "KHARDADHA",
+        "DISTRICT": "NORTH 24 PGNS",
         "STATE": "WEST BENGAL",
-        "PINCODE": "",
-        "ADDRESS DETAILS (PRESENTADDRESS)": "",
-        "PRESENT ADDRESS": "SAME",
-        "P.O._2": "",
-        "P.S._2": "",
-        "DISTRICT_2": "",
-        "STATE_2": "",
-        "PINCODE_2": ""
+        "PINCODE": "700118"
     },
-    "present": {},
+    "present": {
+        "PRESENT ADDRESS": "RANA PRATAP ROAD SAHA NIKETAN",
+        "P.O._2": "SAKTINAGAR",
+        "P.S._2": "KOTWALI",
+        "DISTRICT_2": "NADIA",
+        "STATE_2": "WEST BENGAL",
+        "PINCODE_2": "741102"
+    },
     "parentDetails": {
-        "FATHER'S NAME": "TARAK NATH PATRA",
-        "OCCUPATION": "",
-        "MOBILE NO": "9734321407",
-        "EMAIL-ID": "",
-        "MOTHER'S NAME": "JAYA SHREE PATRA",
-        "OCCUPATION_2": "\u2014",
-        "MOBILE NO.": "700372407",
-        "EMAIL-ID_2": ""
+        "FATHER'S NAME": "PRABIR SAHA",
+        "OCCUPATION": "SERVICE",
+        "MOBILE NO": "9183 745145",
+        "EMAIL-ID": "SPUJA.NEW@GMAIL.COM",
+        "MOTHER'S NAME": "SEULI SAHA",
+        "OCCUPATION_2": "HOME MAKER",
+        "MOBILE NO_2": "9851144647",
+        "EMAIL-ID_2": "PUJA.SAHA@SIGMENTECH.COM"
+    },
+    "localGuardian": {
+        "NAME_2": "SOORAV NEOGI",
+        "RELATIONSHIP WITH STUDENT": "FRIEND",
+        "MOBILE NO_3": "8617766814",
+        "EMAIL-ID_3": "MNEOGI@PORN.COM",
+        "PRESENT ADDRESS_2": "KOLKATA DUTTA PUKUR BEHALA",
+        "P.O._3": "BEHALA",
+        "P.S._3": "BEHALA",
+        "PINCODE_3": "712258",
+        "DISTRICT_3": "SOUTH24 PARGANAS",
+        "STATE_3": "WEST BENGAL",
+        "OCCUPATION_3": "& NSS ADMIN"
+    },
+    "qualification": {
+        "APPLICATION DATE": "27-09-2024",
+        "ACADEMIC SESSION": "2000 - 2025",
+        "PROGRAMME OF STUDY": "MBBS",
+        "SEAT ALLOTMENT NO": "HIADIS"
+    },
+    "netug": {
+        "APPLICATION NO": "U12050",
+        "ROLL NO": "2078",
+        "TOTAL MARKS OBTAINED": "100",
+        "PERCENTILE": "20%",
+        "CATEGORY": "TEST CAT",
+        "ALL INDIA RANK": "22",
+        "QUOTA": ""
+    },
+    "xii": {
+        "INSTITUTE/BOARD": "ARAMBAGH HIGH SCHOOL",
+        "%/CGPA": "21%",
+        "YEAR OF PASSING": "2008"
+    },
+    "x": {
+        "INSTITUTE/BOARD_2": "ARAMBAGH HIGH SCHOOL",
+        "%/CGPA_2": "27%",
+        "YEAR OF PASSING_2": "2009"
+    },
+    "physics": {
+        "MARKS OBTAINED": "25",
+        "TOTAL MARKS": "100",
+        "PERCENTAGE(%)": "21%"
+    },
+    "chemistry": {
+        "MARKS OBTAINED_2": "100",
+        "TOTAL MARKS_2": "150",
+        "PERCENTAGE(%)_2": "55%"
+    },
+    "biology": {
+        "MARKS OBTAINED_3": "95",
+        "TOTAL MARKS_3": "100",
+        "PERCENTAGE(%)_3": "95%"
+    },
+    "declaration": {
+        "SIGNATURE OF THE CANDIDATE": "SUVENDU PATRO.",
+        "DATE OF SUBMISSION": "24/8/2002"
     }
 }

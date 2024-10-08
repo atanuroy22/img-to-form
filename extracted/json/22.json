@@ -1,53 +1,54 @@
 {
     "formStart": {
+        "MBBS COURSE IN SESSION": "2024 - 2029",
         "form_no": "121"
     },
     "studentDetails": {
-        "student_name": "PUJA SAHA",
-        "student_blood_group": "A+VE",
-        "student_dob": "18.10.2024",
-        "student_place_of_dob": "ALIPURDUAR",
-        "student_contact_no": "860940 6684",
+        "student_name": "SUKHENDU PATRA",
+        "student_blood_group": "B+",
+        "student_dob": "24/08/1992",
+        "student_place_of_dob": "KOLKATA",
+        "student_contact_no": "9734321407",
         "student_nationality": "INDIAN",
-        "student_marital": "UNMARRIED",
+        "student_marital": "MARRIED",
         "student_cast": "GENERAL",
-        "student_gender": "FEMALE",
+        "student_gender": "MALE",
         "student_religion": "HINDU",
         "student_mothertongue": "BENGALI",
-        "student_email": "PUJASHAHA0018@GMAIL.COM"
+        "student_email": "SUKHENDUPATRA 2011@GMAIL.COM"
     },
     "permenent": {
-        "permenent_address": "48/26 MISSION PARA ROAD",
-        "permenent_post_office": "RAHARA",
-        "permenent_police_station": "KHARDADHA",
-        "permenent_district": "NORTH 24 PGNS",
+        "permenent_address": "SAI CITY APARTMENT 20 MOHAN LAL MUKHERJEE ST.",
+        "permenent_post_office": "UTTAR PARA",
+        "permenent_police_station": "UTTAR PARA",
+        "permenent_district": "JOO GHALY",
         "permenent_state": "WEST BENGAL",
-        "permenent_pincode": "700118"
+        "permenent_pincode": "712 258"
     },
     "present": {
-        "present_address": "RANA PRATAP ROAD SAHA NIKETAN",
-        "present_post_office": "SAKTINAGAR",
-        "present_police_station": "KOTWALI",
-        "present_district": "NADIA",
-        "present_state": "WEST BENGAL",
-        "present_pincode": "741102"
+        "present_address": "SAME",
+        "present_post_office": "",
+        "present_police_station": "",
+        "present_district": "",
+        "present_state": "",
+        "present_pincode": ""
     },
     "parentDetails": {
-        "father_name": "PRABIR SAHA",
-        "father_occupation": "SERVICE",
-        "father_mobile_no": "9183 745145",
-        "father_email_id": "SPUJA.NEW@GMAIL.COM",
-        "mother_name": "SEULI SAHA",
-        "mother_occupation": "HOME MAKER",
-        "mother_mobile_no": "9851144647",
-        "mother_email_id": "PUJA.SAHA@SIGMENTECH.COM"
+        "father_name": "TARAK NATH PATRA",
+        "father_occupation": "SERVIE MAN",
+        "father_mobile_no": "9734321407",
+        "father_email_id": "",
+        "mother_name": "JAYA SHREE PATRA",
+        "mother_occupation": "HOUSE WIFE",
+        "mother_mobile_no": "700372407",
+        "mother_email_id": ""
     },
     "localGuardian": {
         "guardian_name": "SOORAV NEOGI",
         "guardian_relationship": "FRIEND",
-        "guardian_mobile": "8617766814",
+        "guardian_mobile": "8617766841",
         "guardian_email": "MNEOGI@PORN.COM",
-        "guardian_address": "KOLKATA DUTTA PUKUR BEHALA",
+        "guardian_address": "KOLKATA, DUTTA PUKUR, BEHALA",
         "guardian_occupation": "& NSS ADMIN",
         "guardian_post_office": "BEHALA",
         "guardian_police_station": "BEHALA",
@@ -67,13 +68,12 @@
         "neet_total_marks": "100",
         "neet_percentile": "20%",
         "neet_category": "TEST CAT",
-        "neet_quota": "",
-        "neet_rank": "22"
+        "neet_quota": ""
     },
     "xii": {
-        "board_1": "ARAMBAGH HIGH SCHOOL",
-        "cgpa_1": "21%",
-        "year_of_pass_1": "2008"
+        "board_0": "ARAM BAGH HIGH SCHOOL",
+        "cgpa_0": "21%",
+        "year_of_pass_0": "2008"
     },
     "x": {
         "board_0": "ARAMBAGH HIGH SCHOOL",
@@ -86,9 +86,9 @@
         "percentage_0": "21%"
     },
     "chemistry": {
-        "marks_1": "100",
-        "total_marks_1": "150",
-        "percentage_1": "55%"
+        "marks_0": "100",
+        "total_marks_0": "150",
+        "percentage_0": "55%"
     },
     "biology": {
         "marks_2": "95",
@@ -96,7 +96,7 @@
         "percentage_2": "95%"
     },
     "declaration": {
-        "candidate_signature": "SUVENDU PATRO.",
+        "candidate_signature": "SWENDU PATOA.",
         "submission_date": "24/8/2002"
     }
 }

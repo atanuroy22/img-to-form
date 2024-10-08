@@ -1,11 +1,12 @@
 {
     "formStart": {
+        "MBBS COURSE IN SESSION": "2024 - 2029",
         "form_no": "121"
     },
     "studentDetails": {
         "student_name": "PUJA SAHA",
         "student_blood_group": "A+VE",
-        "student_dob": "18.10.2024",
+        "student_dob": "18-10-2024",
         "student_place_of_dob": "ALIPURDUAR",
         "student_contact_no": "860940 6684",
         "student_nationality": "INDIAN",
@@ -14,12 +15,12 @@
         "student_gender": "FEMALE",
         "student_religion": "HINDU",
         "student_mothertongue": "BENGALI",
-        "student_email": "PUJASHAHA0018@GMAIL.COM"
+        "student_email": "PUJAS AHA00018 @ GMAIL.COM"
     },
     "permenent": {
         "permenent_address": "48/26 MISSION PARA ROAD",
         "permenent_post_office": "RAHARA",
-        "permenent_police_station": "KHARDADHA",
+        "permenent_police_station": "KHARD A HA",
         "permenent_district": "NORTH 24 PGNS",
         "permenent_state": "WEST BENGAL",
         "permenent_pincode": "700118"
@@ -35,23 +36,23 @@
     "parentDetails": {
         "father_name": "PRABIR SAHA",
         "father_occupation": "SERVICE",
-        "father_mobile_no": "9183 745145",
-        "father_email_id": "SPUJA.NEW@GMAIL.COM",
+        "father_mobile_no": "9183745145",
+        "father_email_id": "SPUJA.NEW @ GMAIL.COM",
         "mother_name": "SEULI SAHA",
         "mother_occupation": "HOME MAKER",
         "mother_mobile_no": "9851144647",
-        "mother_email_id": "PUJA.SAHA@SIGMENTECH.COM"
+        "mother_email_id": "PUJA.SAHA @ SIGMENTECH.COM"
     },
     "localGuardian": {
         "guardian_name": "SOORAV NEOGI",
         "guardian_relationship": "FRIEND",
-        "guardian_mobile": "8617766814",
+        "guardian_mobile": "8617766841",
         "guardian_email": "MNEOGI@PORN.COM",
         "guardian_address": "KOLKATA DUTTA PUKUR BEHALA",
-        "guardian_occupation": "& NSS ADMIN",
+        "guardian_occupation": "NSS ADMIN",
         "guardian_post_office": "BEHALA",
         "guardian_police_station": "BEHALA",
-        "guardian_district": "SOUTH24 PARGANAS",
+        "guardian_district": "SOUTH 24 PARGANAS",
         "guardian_state": "WEST BENGAL",
         "guardian_pincode": "712258"
     },
@@ -67,36 +68,35 @@
         "neet_total_marks": "100",
         "neet_percentile": "20%",
         "neet_category": "TEST CAT",
-        "neet_quota": "",
         "neet_rank": "22"
     },
     "xii": {
-        "board_1": "ARAMBAGH HIGH SCHOOL",
-        "cgpa_1": "21%",
-        "year_of_pass_1": "2008"
+        "board[0]": "ARAM BAGH HIGH SCHOOL",
+        "cgpa[0]": "21%",
+        "year_of_pass[0]": "2008"
     },
     "x": {
-        "board_0": "ARAMBAGH HIGH SCHOOL",
-        "cgpa_0": "27%",
-        "year_of_pass_0": "2009"
+        "board[1]": "ARAMBAGH HIGH SCHOOL",
+        "cgpa[1]": "27%",
+        "year_of_pass[1]": "2009"
     },
     "physics": {
-        "marks_0": "25",
-        "total_marks_0": "100",
-        "percentage_0": "21%"
+        "marks[0]": "25",
+        "total_marks[0]": "100",
+        "percentage[0]": "21%"
     },
     "chemistry": {
-        "marks_1": "100",
-        "total_marks_1": "150",
-        "percentage_1": "55%"
+        "marks[1]": "100",
+        "total_marks[1]": "150",
+        "percentage[1]": "55%"
     },
     "biology": {
-        "marks_2": "95",
-        "total_marks_2": "100",
-        "percentage_2": "95%"
+        "marks[2]": "95",
+        "total_marks[2]": "100",
+        "percentage[2]": "95%"
     },
     "declaration": {
-        "candidate_signature": "SUVENDU PATRO.",
+        "candidate_signature": "SUHARDO PATOA",
         "submission_date": "24/8/2002"
     }
 }

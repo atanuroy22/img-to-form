@@ -6,8 +6,12 @@ import google.generativeai as genai
 import os
 from flask import Flask, render_template, request, redirect, url_for,jsonify  # Ensure redirect and url_for are imported
 import shutil  # Add this import at the top of your file
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+# CORS configuration
+CORS(app)  # Enable CORS for all routes
 
 def extract_text_with_gemini(image_path):
     try:
@@ -44,7 +48,7 @@ def extract_text_with_back_gemini(image_path):
         print(f"Retrieved file '{file.display_name}' as: {sample_file.uri}")
         
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-        response = model.generate_content([sample_file, "Extract only key-value pairs from the text, keeping the headers as they appear in the form. Ensure each key-value pair is on a separate line and Append '_2' after the keys 'NAME' and 'PRESENT ADDRESS'. Append '_3' after the keys 'MOBILE NO', 'EMAIL-ID', 'P.O.', 'P.S.', 'PINCODE', 'DISTRICT', 'STATE', and 'OCCUPATION'. Do not include any non key-value pair texts and add 'LOCAL GUARDIAN DETAILS:' at top in the output . Scan row-wise. Keep all key-value pairs under their respective headers until the next header starts. Please ensure the output is accurate with correct spelling and follows the instructions precisely."])
+        response = model.generate_content([sample_file, "Extract only key-value pairs from the text and dont forget the quota and all india rank , keeping the headers as they appear in the form. Ensure each key-value pair is on a separate line and Append '_2' after the keys 'NAME' and 'PRESENT ADDRESS'. Append '_3' after the keys 'MOBILE NO', 'EMAIL-ID', 'P.O.', 'P.S.', 'PINCODE', 'DISTRICT', 'STATE', and 'OCCUPATION'. Do not include any non key-value pair texts and add 'LOCAL GUARDIAN DETAILS:' at top in the output . Scan row-wise. Keep all key-value pairs under their respective headers until the next header starts. Please ensure the output is accurate with correct spelling and follows the instructions precisely."])
         
         return response.text
         # return False
@@ -61,7 +65,7 @@ def extract_text_from_image(image_path):
             url_api,
             files={"image.jpg": file_bytes},
             data={
-                "apikey": "---",
+                "apikey": "K83686776688957",
                 "language": "eng",
                 "isOverlayRequired": True,
                 "detectOrientation": True,
@@ -220,15 +224,15 @@ def upload():
         os.makedirs('./uploads')
 
         # Set API key for front upload
-        os.environ['GEMINI_AI_API_KEY_1'] = '---'#
-        os.environ['GEMINI_AI_API_KEY_2'] = '---'#
+        os.environ['GEMINI_AI_API_KEY_1'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
+        os.environ['GEMINI_AI_API_KEY_2'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
         API_KEY_1 = os.environ['GEMINI_AI_API_KEY_1']
         API_KEY_2 = os.environ['GEMINI_AI_API_KEY_2']
         genai.configure(api_key=API_KEY_1)
         
         # Get the image file and key from the request
-        file = request.files.get('file')  # Ensure the key matches what Postman sends
-        key = request.form.get('key')  # Get the key from the form data
+        file = request.files.get('file_1')  # Ensure the key matches what Postman sends
+        key = request.form.get('key_1')  # Get the key from the form data
 
         if file and key:
             file_path = f"./uploads/{file.filename}"
@@ -275,7 +279,10 @@ def upload():
                         cleaned_text = text_file.read().splitlines()
                     print(cleaned_text)
                     save_as_json(cleaned_text)  # Process and save as JSON
-                    return jsonify({"status": 200, "message": "Success."}), 200
+                    # Scan the data file and return the data
+                    # with open('data.json', 'r', encoding='utf-8') as data_file:
+                    #     data_content = json.load(data_file)
+                    return jsonify({"status": 200, "message": {'msg':'First page uploaded successfully!'}}), 200 #, "data": data_content
             else:   
                 # Switch to the second API key if the first one fails
                 genai.configure(api_key=API_KEY_2)
@@ -292,7 +299,10 @@ def upload():
                             cleaned_text = text_file.read().splitlines()
                         print(cleaned_text)
                         save_as_json(cleaned_text)  # Process and save as JSON
-                        return jsonify({"status": 200, "message": "Success."}), 200
+                        # Scan the data file and return the data
+                        # with open('data.json', 'r', encoding='utf-8') as data_file:
+                        #     data_content = json.load(data_file)
+                        return jsonify({"status": 200,"img": {'img': new_file_path }, "message": {'msg':'First page uploaded successfully!'}}), 200 #, "data": data_content
                 else:
                     print("Gemini extraction failed or no valid text found. Falling back to OCR Space.")
                     # Fallback to OCR Space if both keys fail
@@ -309,15 +319,18 @@ def upload():
                             cleaned_text = text_file.read().splitlines()
                         print(cleaned_text)
                         save_as_json(cleaned_text)  # Process and save as JSON
-                        return jsonify({"status": 200, "message": "Success."}), 200
+                        # Scan the data file and return the data
+                        # with open('data.json', 'r', encoding='utf-8') as data_file:
+                        #     data_content = json.load(data_file)
+                        return jsonify({"status": 200,"img": {'img': new_file_path }, "message": {'msg':'First page uploaded successfully!'}}), 200 #, "data": data_content
                     else:
                         # Delete the uploads directory if it exists    
                         if os.path.exists('./uploads'):  
                             shutil.rmtree('./uploads')
-                        return jsonify({"status": 400, "message": "Failed to extract text from OCR Space."}), 400
+                        return jsonify({"status": 400, "message": {'msg':'Failed to extract text from OCR Space.'}}), 400
                         
         else:
-            return jsonify({"status": 400, "message": "No file selected."}), 400
+            return jsonify({"status": "500","data": [],"message": {"msg": "Select Page 1"}}), 200
     except Exception as e:
         print(f"Error during extraction: {e}")
         if os.path.exists(file_path):  # Delete the uploaded file if it exists
@@ -325,7 +338,7 @@ def upload():
         # Delete the uploads directory if it exists    
         if os.path.exists('./uploads'):  
             shutil.rmtree('./uploads')
-        return jsonify({"status": 400, "message": "An error occurred during processing."}), 500
+        return jsonify({"status": 400, "message": {'msg':'An error occurred during processing.'}}), 500
             
     finally:
         # Delete the temporary image file after processing
@@ -346,15 +359,15 @@ def upload_back():
         os.makedirs('./uploads')
 
         # Set API key for back upload
-        os.environ['GEMINI_AI_API_KEY_1'] = '---'#
-        os.environ['GEMINI_AI_API_KEY_2'] = '---'#
+        os.environ['GEMINI_AI_API_KEY_1'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
+        os.environ['GEMINI_AI_API_KEY_2'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
         API_KEY_1 = os.environ['GEMINI_AI_API_KEY_1']
         API_KEY_2 = os.environ['GEMINI_AI_API_KEY_2']
         genai.configure(api_key=API_KEY_1)
 
         # Get the image file and key from the request
-        file = request.files.get('file')  # Ensure the key matches what Laravel sends
-        key = request.form.get('key')  # Get the key from the form data
+        file = request.files.get('file_2')  # Ensure the key matches what Laravel sends
+        key = request.form.get('key_2')  # Get the key from the form data
 
         if file and key:
             file_path = f"./uploads/back_{file.filename}"
@@ -408,15 +421,15 @@ def upload_back():
                             loaded_json = json.loads(json_content)
                             # response_data = {
                             #                 "status": 200,
-                            #                 "message": "Data loaded successfully",
+                            #                 "message": {'msg':'Data loaded successfully'},
                             #                 "data": loaded_json
                             #                 }
                             # return jsonify(response_data), 200
                         else:
                             print("JSON file is empty.")
-                            return jsonify({"status": 400, "message": "JSON file is empty."}), 400
+                            return jsonify({"status": 400, "message": {'msg':'JSON file is empty.'}}), 400
                 else:
-                    return jsonify({"status": 400, "message": "Failed to process text."}), 400
+                    return jsonify({"status": 400, "message": {'msg':'Failed to process text.'}}), 400
             else:
                 # Switch to the second API key if the first one fails
                 genai.configure(api_key=API_KEY_2)
@@ -441,15 +454,15 @@ def upload_back():
                                 loaded_json = json.loads(json_content)
                                 # response_data = {
                                 #             "status": 200,
-                                #             "message": "Data loaded successfully",
+                                #             "message": {'msg':'Data loaded successfully'},
                                 #             "data": loaded_json
                                 #             }
                                 # return jsonify(response_data), 200
                             else:
                                 print("JSON file is empty.")
-                                return jsonify({"status": 400, "message": "JSON file is empty."}), 400
+                                return jsonify({"status": 400, "message": {'msg':'JSON file is empty.'}}), 400
                     else:
-                        return jsonify({"status": 400, "message": "Failed to process text."}), 400
+                        return jsonify({"status": 400, "message": {'msg':'Failed to process text.'}}), 400
                 else:
                     print("Gemini extraction failed or no valid text found. Falling back to OCR Space.")
                     # Fallback to OCR Space if both keys fail
@@ -474,20 +487,20 @@ def upload_back():
                                 loaded_json = json.loads(json_content)
                                 # response_data = {
                                 #             "status": 200,
-                                #             "message": "Data loaded successfully",
+                                #             "message": {'msg':'Data loaded successfully'},
                                 #             "data": loaded_json
                                 #             }
                                 # return jsonify(response_data), 200
                             else:
                                 print("JSON file is empty.")
-                                return jsonify({"status": 400, "message": "JSON file is empty."}), 400
+                                return jsonify({"status": 400, "message": {'msg':'JSON file is empty.'}}), 400
                     else:
                         # Delete the uploads directory if it exists    
                         if os.path.exists('./uploads'):  
                             shutil.rmtree('./uploads')
-                        return jsonify({"status": 400, "message": "Failed to extract text from OCR Space."}), 400
+                        return jsonify({"status": 400, "message": {'msg':'Failed to extract text from OCR Space.'}}), 400
         else:
-            return jsonify({"status": 400, "message": "No file selected."}), 400
+            return jsonify({"status": "500","data": [],"message": {"msg": "Select Page 2"}}), 200
     except Exception as e:
         print(f"Error during extraction: {e}")
         # Delete the uploaded file if it exists
@@ -496,7 +509,7 @@ def upload_back():
         # Delete the uploads directory if it exists    
         if os.path.exists('./uploads'):  
             shutil.rmtree('./uploads')
-        return jsonify({"status": 400, "message": "An error occurred during processing."}), 500
+        return jsonify({"status": 400, "message": {'msg':'An error occurred during processing.'}}), 500
     finally:
         # Delete the temporary image file after processing
         if 'file_path' in locals() and os.path.exists(file_path):
@@ -504,187 +517,206 @@ def upload_back():
         # Delete the uploads directory if it exists    
         if os.path.exists('./uploads'):  
             shutil.rmtree('./uploads')
-        with open('data.json', 'r', encoding='utf-8') as json_file:
-            loaded_json = json.load(json_file)
-            for item in loaded_json.values():  # Change to iterate over values
+        if file and key:
+            with open('data.json', 'r', encoding='utf-8') as json_file:
+                loaded_json = json.load(json_file)
+                for item in loaded_json.values():  # Change to iterate over values
 
-                if 'FORM NO.' in item:
-                    item['form_no'] = item.pop('FORM NO.')
-                if 'NAME' in item:
-                    item['student_name'] = item.pop('NAME')
-                if 'BLOOD GROUP' in item:
-                    item['student_blood_group'] = item.pop('BLOOD GROUP')
-                if 'DATE OF BIRTH' in item:
-                    item['student_dob'] = item.pop('DATE OF BIRTH')
-                if 'PLACE OF BIRTH' in item:
-                    item['student_place_of_dob'] = item.pop('PLACE OF BIRTH')
-                if 'CONTACT NO' in item:
-                    item['student_contact_no'] = item.pop('CONTACT NO')
-                if 'NATIONALITY' in item:
-                    item['student_nationality'] = item.pop('NATIONALITY')
-                if 'MARITAL STATUS' in item:
-                    item['student_marital'] = item.pop('MARITAL STATUS')
-                if 'CASTE' in item:
-                    item['student_cast'] = item.pop('CASTE')
-                if 'GENDER' in item:
-                    item['student_gender'] = item.pop('GENDER')
-                if 'RELIGION' in item:
-                    item['student_religion'] = item.pop('RELIGION')
-                if 'MOTHER' in item:  
-                    item['student_mothertounge'] = item.pop('MOTHERTOUNGE') if 'MOTHERTOUNGE' in item else item.pop('MOTHERTONGUE', None)
-                if 'MOTHERTONGUE' in item:  
-                    item['student_mothertongue'] = item.pop('MOTHERTONGUE')
-                if 'MOTHERTOUNGE' in item:  
-                    item['student_mothertongue'] = item.pop('MOTHERTOUNGE')
-                if 'EMAIL ID' in item:
-                    item['student_email'] = item.pop('EMAIL ID')
-                if 'PERMANENT ADDRESS' in item:
-                    item['permanent_address'] = item.pop('PERMANENT ADDRESS')  
-                if 'P.O.' in item:
-                    item['permanent_post_office'] = item.pop('P.O.')  
-                if 'P.S.' in item:
-                    item['permanent_police_station'] = item.pop('P.S.')  
-                if 'DISTRICT' in item:
-                    item['permanent_district'] = item.pop('DISTRICT')  
-                if 'STATE' in item:
-                    item['permanent_state'] = item.pop('STATE')  
-                if 'PINCODE' in item:
-                    item['permanent_pincode'] = item.pop('PINCODE')
-                if 'PRESENT ADDRESS' in item:
-                    item['present_address'] = item.pop('PRESENT ADDRESS')
-                if 'P.O._2' in item:
-                    item['present_post_office'] = item.pop('P.O._2')
-                if 'P.S._2' in item:
-                    item['present_police_station'] = item.pop('P.S._2')
-                if 'DISTRICT_2' in item:
-                    item['present_district'] = item.pop('DISTRICT_2')
-                if 'STATE_2' in item:
-                    item['present_state'] = item.pop('STATE_2')
-                if 'PINCODE_2' in item:
-                    item['present_pincode'] = item.pop('PINCODE_2')
-                if "FATHER'S NAME" in item:
-                    item['father_name'] = item.pop("FATHER'S NAME")
-                if 'OCCUPATION' in item:
-                    item['father_occupation'] = item.pop('OCCUPATION')
-                if 'MOBILE NO' in item:
-                    item['father_mobile_no'] = item.pop('MOBILE NO')
-                if 'EMAIL-ID' in item: 
-                    item['father_email_id'] = item.pop('EMAIL-ID')
-                if 'EMAIL ID' in item:
-                    item['father_email_id'] = item.pop('EMAIL ID')
-                if "MOTHER'S NAME" in item:
-                    item['mother_name'] = item.pop("MOTHER'S NAME")
-                if 'OCCUPATION_2' in item:
-                    item['mother_occupation'] = item.pop('OCCUPATION_2')
-                if 'MOBILE NO_2' in item:
-                    item['mother_mobile_no'] = item.pop('MOBILE NO_2')
-                if 'EMAIL-ID_2' in item:
-                    item['mother_email_id'] = item.pop('EMAIL-ID_2')
-                if 'EMAIL ID_2' in item:
-                    item['mother_email_id'] = item.pop('EMAIL ID_2')
-                if 'NAME_2' in item:
-                    item['guardian_name'] = item.pop('NAME_2')
-                if 'RELATIONSHIP WITH STUDENT' in item:
-                    item['guardian_relationship'] = item.pop('RELATIONSHIP WITH STUDENT')
-                if 'MOBILE NO_3' in item:
-                    item['guardian_mobile'] = item.pop('MOBILE NO_3')
-                if 'EMAIL-ID_3' in item:
-                    item['guardian_email'] = item.pop('EMAIL-ID_3')
-                if 'EMAIL ID_3' in item:
-                    item['guardian_email'] = item.pop('EMAIL ID_3')
-                if 'PRESENT ADDRESS_2' in item:
-                    item['guardian_address'] = item.pop('PRESENT ADDRESS_2')
-                if 'OCCUPATION_3' in item:
-                    item['guardian_occupation'] = item.pop('OCCUPATION_3')
-                if 'P.O._3'  in item:
-                    item['guardian_post_office'] = item.pop('P.O._3')
-                if 'P.O_3'  in item:
-                    item['guardian_post_office'] = item.pop('P.O_3')    
-                if 'P.S._3' in item:
-                    item['guardian_police_station'] = item.pop('P.S._3')
-                if 'P.S_3' in item:
-                    item['guardian_police_station'] = item.pop('P.S_3')
-                if 'DISTRICT_3' in item:
-                    item['guardian_district'] = item.pop('DISTRICT_3')
-                if 'STATE_3' in item:
-                    item['guardian_state'] = item.pop('STATE_3')
-                if 'PINCODE_3' in item:
-                    item['guardian_pincode'] = item.pop('PINCODE_3')
-                if 'APPLICATION DATE' in item:
-                    item['application_date'] = item.pop('APPLICATION DATE')
-                if 'ACADEMIC SESSION' in item:
-                    item['accademic_session'] = item.pop('ACADEMIC SESSION')
-                if 'PROGRAMME OF STUDY' in item:
-                    item['programme_study'] = item.pop('PROGRAMME OF STUDY')
-                if 'SEAT ALLOTMENT NO.' in item:
-                    item['seat_allotment'] = item.pop('SEAT ALLOTMENT NO.')
-                if 'SEAT ALLOTMENT NO' in item:
-                    item['seat_allotment'] = item.pop('SEAT ALLOTMENT NO')
-                if 'APPLICATION NO.' in item:
-                    item['neet_application_no'] = item.pop('APPLICATION NO.')
-                if 'APPLICATION NO' in item:
-                    item['neet_application_no'] = item.pop('APPLICATION NO')
-                if 'ROLL NO.' in item:
-                    item['neet_roll_no'] = item.pop('ROLL NO.')
-                if 'ROLL NO' in item:
-                    item['neet_roll_no'] = item.pop('ROLL NO')
-                if 'TOTAL MARKS OBTAINED' in item:
-                    item['neet_total_marks'] = item.pop('TOTAL MARKS OBTAINED')
-                if 'PERCENTILE' in item:
-                    item['neet_percentile'] = item.pop('PERCENTILE')
-                if 'CATEGORY' in item:
-                    item['neet_category'] = item.pop('CATEGORY')
-                if 'QUOTA' in item:
-                    item['neet_quota'] = item.pop('QUOTA')
-                if 'ALL INDIA RANK' in item:
-                    item['neet_rank'] = item.pop('ALL INDIA RANK')
-                if 'INSTITUTE/BOARD' in item:
-                    item['board[0]'] = item.pop('INSTITUTE/BOARD')
-                if '%/CGPA' in item:    
-                    item['cgpa[0]'] = item.pop('%/CGPA')
-                if 'YEAR OF PASSING' in item:
-                    item['year_of_pass[0]'] = item.pop('YEAR OF PASSING')
-                if 'INSTITUTE/BOARD_2' in item:
-                    item['board[1]'] = item.pop('INSTITUTE/BOARD_2')
-                if '%/CGPA_2' in item:
-                    item['cgpa[1]'] = item.pop('%/CGPA_2')
-                if 'YEAR OF PASSING_2' in item:
-                    item['year_of_pass[1]'] = item.pop('YEAR OF PASSING_2')
-                if 'MARKS OBTAINED' in item:
-                    item['marks[0]'] = item.pop('MARKS OBTAINED')
-                if 'TOTAL MARKS' in item:
-                    item['total_marks[0]'] = item.pop('TOTAL MARKS')
-                if 'PERCENTAGE(%)' in item:
-                    item['percentage[0]'] = item.pop('PERCENTAGE(%)')
-                if 'MARKS OBTAINED_2' in item:
-                    item['marks[1]'] = item.pop('MARKS OBTAINED_2')
-                if 'TOTAL MARKS_2' in item:
-                    item['total_marks[1]'] = item.pop('TOTAL MARKS_2')
-                if 'PERCENTAGE(%)_2' in item:
-                    item['percentage[1]'] = item.pop('PERCENTAGE(%)_2')
-                if 'MARKS OBTAINED_3' in item:
-                    item['marks[2]'] = item.pop('MARKS OBTAINED_3')
-                if 'TOTAL MARKS_3' in item:
-                    item['total_marks[2]'] = item.pop('TOTAL MARKS_3')
-                if 'PERCENTAGE(%)_3' in item:
-                    item['percentage[2]'] = item.pop('PERCENTAGE(%)_3')
-                if 'SIGNATURE OF THE CANDIDATE' in item:
-                    item['candidate_signature'] = item.pop('SIGNATURE OF THE CANDIDATE')
-                if 'DATE OF SUBMISSION' in item:
-                    item['submission_date'] = item.pop('DATE OF SUBMISSION')
-                
+                    if 'FORM NO.' in item:
+                        item['form_no'] = item.pop('FORM NO.')
+                    if 'NAME' in item:
+                        item['student_name'] = item.pop('NAME')
+                    if 'BLOOD GROUP' in item:
+                        item['student_blood_group'] = item.pop('BLOOD GROUP')
+                    if 'DATE OF BIRTH' in item:
+                        item['student_dob'] = item.pop('DATE OF BIRTH')
+                    if 'PLACE OF BIRTH' in item:
+                        item['student_place_of_dob'] = item.pop('PLACE OF BIRTH')
+                    if 'CONTACT NO' in item:
+                        item['student_contact_no'] = item.pop('CONTACT NO')
+                    if 'CONTACT NO.' in item:
+                        item['student_contact_no'] = item.pop('CONTACT NO.')
+                    if 'NATIONALITY' in item:
+                        item['student_nationality'] = item.pop('NATIONALITY')
+                    if 'MARITAL STATUS' in item:
+                        item['student_marital'] = item.pop('MARITAL STATUS')
+                    if 'CASTE' in item:
+                        item['student_cast'] = item.pop('CASTE')
+                    if 'GENDER' in item:
+                        item['student_gender'] = item.pop('GENDER')
+                    if 'RELIGION' in item:
+                        item['student_religion'] = item.pop('RELIGION')
+                    if 'MOTHER' in item:  
+                        item['student_mothertounge'] = item.pop('MOTHERTOUNGE') if 'MOTHERTOUNGE' in item else item.pop('MOTHERTONGUE',     None)
+                    if 'MOTHERTONGUE' in item:  
+                        item['student_mothertongue'] = item.pop('MOTHERTONGUE')
+                    if 'MOTHERTOUNGE' in item:  
+                        item['student_mothertongue'] = item.pop('MOTHERTOUNGE')
+                    if 'EMAIL ID' in item:
+                        item['student_email'] = item.pop('EMAIL ID')
+                    if 'PERMANENT ADDRESS' in item:
+                        item['permenent_address'] = item.pop('PERMANENT ADDRESS')  
+                    if 'P.O.' in item:
+                        item['permenent_post_office'] = item.pop('P.O.')  
+                    if 'P.S.' in item:
+                        item['permenent_police_station'] = item.pop('P.S.')  
+                    if 'DISTRICT' in item:
+                        item['permenent_district'] = item.pop('DISTRICT')  
+                    if 'STATE' in item:
+                        item['permenent_state'] = item.pop('STATE')  
+                    if 'PINCODE' in item:
+                        item['permenent_pincode'] = item.pop('PINCODE')
+                    if 'PRESENT ADDRESS' in item:
+                        item['present_address'] = item.pop('PRESENT ADDRESS')
+                    if 'P.O._2' in item:
+                        item['present_post_office'] = item.pop('P.O._2')
+                    if 'P.S._2' in item:
+                        item['present_police_station'] = item.pop('P.S._2')
+                    if 'DISTRICT_2' in item:
+                        item['present_district'] = item.pop('DISTRICT_2')
+                    if 'STATE_2' in item:
+                        item['present_state'] = item.pop('STATE_2')
+                    if 'PINCODE_2' in item:
+                        item['present_pincode'] = item.pop('PINCODE_2')
+                    if "FATHER'S NAME" in item:
+                        item['father_name'] = item.pop("FATHER'S NAME")
+                    if 'OCCUPATION' in item:
+                        item['father_occupation'] = item.pop('OCCUPATION')
+                    if 'MOBILE NO' in item:
+                        item['father_mobile_no'] = item.pop('MOBILE NO')
+                    if 'EMAIL-ID' in item: 
+                        item['father_email_id'] = item.pop('EMAIL-ID')
+                    if 'EMAIL ID' in item:
+                        item['father_email_id'] = item.pop('EMAIL ID')
+                    if "MOTHER'S NAME" in item:
+                        item['mother_name'] = item.pop("MOTHER'S NAME")
+                    if 'OCCUPATION_2' in item:
+                        item['mother_occupation'] = item.pop('OCCUPATION_2')
+                    if 'MOBILE NO_2' in item:
+                        item['mother_mobile_no'] = item.pop('MOBILE NO_2')
+                    if 'EMAIL-ID_2' in item:
+                        item['mother_email_id'] = item.pop('EMAIL-ID_2')
+                    if 'EMAIL ID_2' in item:
+                        item['mother_email_id'] = item.pop('EMAIL ID_2')
+                    if 'NAME_2' in item:
+                        item['guardian_name'] = item.pop('NAME_2')
+                    if 'RELATIONSHIP WITH STUDENT' in item:
+                        item['guardian_relationship'] = item.pop('RELATIONSHIP WITH STUDENT')
+                    if 'MOBILE NO_3' in item:
+                        item['guardian_mobile'] = item.pop('MOBILE NO_3')
+                    if 'EMAIL-ID_3' in item:
+                        item['guardian_email'] = item.pop('EMAIL-ID_3')
+                    if 'EMAIL ID_3' in item:
+                        item['guardian_email'] = item.pop('EMAIL ID_3')
+                    if 'PRESENT ADDRESS_2' in item:
+                        item['guardian_address'] = item.pop('PRESENT ADDRESS_2')
+                    if 'OCCUPATION_3' in item:
+                        item['guardian_occupation'] = item.pop('OCCUPATION_3')
+                    if 'P.O._3'  in item:
+                        item['guardian_post_office'] = item.pop('P.O._3')
+                    if 'P.O_3'  in item:
+                        item['guardian_post_office'] = item.pop('P.O_3')    
+                    if 'P.S._3' in item:
+                        item['guardian_police_station'] = item.pop('P.S._3')
+                    if 'P.S_3' in item:
+                        item['guardian_police_station'] = item.pop('P.S_3')
+                    if 'DISTRICT_3' in item:
+                        item['guardian_district'] = item.pop('DISTRICT_3')
+                    if 'STATE_3' in item:
+                        item['guardian_state'] = item.pop('STATE_3')
+                    if 'PINCODE_3' in item:
+                        item['guardian_pincode'] = item.pop('PINCODE_3')
+                    if 'APPLICATION DATE' in item:
+                        item['application_date'] = item.pop('APPLICATION DATE')
+                    if 'ACADEMIC SESSION' in item:
+                        item['accademic_session'] = item.pop('ACADEMIC SESSION')
+                    if 'PROGRAMME OF STUDY' in item:
+                        item['programme_study'] = item.pop('PROGRAMME OF STUDY')
+                    if 'SEAT ALLOTMENT NO.' in item:
+                        item['seat_allotment'] = item.pop('SEAT ALLOTMENT NO.')
+                    if 'SEAT ALLOTMENT NO' in item:
+                        item['seat_allotment'] = item.pop('SEAT ALLOTMENT NO')
+                    if 'APPLICATION NO.' in item:
+                        item['neet_application_no'] = item.pop('APPLICATION NO.')
+                    if 'APPLICATION NO' in item:
+                        item['neet_application_no'] = item.pop('APPLICATION NO')
+                    if 'ROLL NO.' in item:
+                        item['neet_roll_no'] = item.pop('ROLL NO.')
+                    if 'ROLL NO' in item:
+                        item['neet_roll_no'] = item.pop('ROLL NO')
+                    if 'TOTAL MARKS OBTAINED' in item:
+                        item['neet_total_marks'] = item.pop('TOTAL MARKS OBTAINED')
+                    if 'PERCENTILE' in item:
+                        item['neet_percentile'] = item.pop('PERCENTILE')
+                    if 'CATEGORY' in item:
+                        item['neet_category'] = item.pop('CATEGORY')
+                    if 'QUOTA' in item:
+                        item['neet_quota'] = item.pop('QUOTA')
+                    if 'ALL INDIA RANK' in item:
+                        item['neet_rank'] = item.pop('ALL INDIA RANK')
+                    if 'INSTITUTE/BOARD' in item:
+                        item['board_1'] = item.pop('INSTITUTE/BOARD')
+                    if '%/CGPA' in item:    
+                        item['cgpa_1'] = item.pop('%/CGPA')
+                    if 'YEAR OF PASSING' in item:
+                        item['year_of_pass_1'] = item.pop('YEAR OF PASSING')
+                    if 'INSTITUTE/BOARD_2' in item:
+                        item['board_0'] = item.pop('INSTITUTE/BOARD_2')
+                    if '%/CGPA_2' in item:
+                        item['cgpa_0'] = item.pop('%/CGPA_2')
+                    if 'YEAR OF PASSING_2' in item:
+                        item['year_of_pass_0'] = item.pop('YEAR OF PASSING_2')
+                    if 'MARKS OBTAINED' in item:
+                        item['marks_0'] = item.pop('MARKS OBTAINED')
+                    if 'TOTAL MARKS' in item:
+                        item['total_marks_0'] = item.pop('TOTAL MARKS')
+                    if 'PERCENTAGE(%)' in item:
+                        item['percentage_0'] = item.pop('PERCENTAGE(%)')
+                    if 'MARKS OBTAINED_2' in item:
+                        item['marks_1'] = item.pop('MARKS OBTAINED_2')
+                    if 'TOTAL MARKS_2' in item:
+                        item['total_marks_1'] = item.pop('TOTAL MARKS_2')
+                    if 'PERCENTAGE(%)_2' in item:
+                        item['percentage_1'] = item.pop('PERCENTAGE(%)_2')
+                    if 'MARKS OBTAINED_3' in item:
+                        item['marks_2'] = item.pop('MARKS OBTAINED_3')
+                    if 'TOTAL MARKS_3' in item:
+                        item['total_marks_2'] = item.pop('TOTAL MARKS_3')
+                    if 'PERCENTAGE(%)_3' in item:
+                        item['percentage_2'] = item.pop('PERCENTAGE(%)_3')
+                    if 'SIGNATURE OF THE CANDIDATE' in item:
+                        item['candidate_signature'] = item.pop('SIGNATURE OF THE CANDIDATE')
+                    if 'DATE OF SUBMISSION' in item:
+                        item['submission_date'] = item.pop('DATE OF SUBMISSION')
 
 
-        # Save the updated data to data_final.json
-        with open('data_final.json', 'w', encoding='utf-8') as final_json_file:
-            json.dump(loaded_json, final_json_file, ensure_ascii=False, indent=4)
 
-        response_data = {
-            "status": 200,
-            "message": "Data loaded successfully",
-            "data": loaded_json
-        }
-        return jsonify(response_data), 200
+            # Save the updated data to data_final.json
+            with open('data_final.json', 'w', encoding='utf-8') as final_json_file:
+                json.dump(loaded_json, final_json_file, ensure_ascii=False, indent=4)
+
+            response_data = {
+                "status": 200,
+                "message": {'msg':'Second page uploaded successfully!'},
+                "img": {'img': f"public/uploads/student_image/{key}_img.jpg" },
+                "sig": {'sig': f"public/uploads/student_signature/{key}_sig.jpg" },
+                "data": loaded_json
+            }
+            # with open('data_final.json', 'w', encoding='utf-8') as final_json_file:
+            #     json.dump({}, final_json_file, ensure_ascii=False, indent=4)  # Empty the data_final.json
+            # with open('data.json', 'w', encoding='utf-8') as final_json_file:
+            #     json.dump({}, final_json_file, ensure_ascii=False, indent=4)  # Empty the data.json
+            # Get the key from the form data
+            #key = request.form.get('key')  # Ensure the key is retrieved from the form data
+            if key:  # Check if the key is provided
+                # Scan the loaded JSON data and create a new file in the specified directory
+                os.makedirs('extracted/json', exist_ok=True)  # Create the directory if it doesn't exist
+                with open(f'extracted/json/{key}.json', 'w', encoding='utf-8') as json_file:
+                    json.dump(loaded_json, json_file, ensure_ascii=False, indent=4)
+
+            return jsonify(response_data), 200
+        else:
+            return jsonify({"status": "500","data": [],"message": {"msg": "Select Page 2"}}), 200
 
 def extract_text_from_back_image(image_path):
     try:
@@ -747,7 +779,7 @@ def save_as_json(data):
         json_data = {
             "formStart": {},
             "studentDetails": {},
-            "permanent": {},
+            "permenent": {},
             "present": {},
             "parentDetails": {}
         }
@@ -761,7 +793,7 @@ def save_as_json(data):
                 current_section = "formStart"
                 continue
             elif "ADDRESS DETAILS (PERMANENT ADDRESS)" in item or "(PERMANENT ADDRESS)" in item:
-                current_section = "permanent"
+                current_section = "permenent"
                 continue
             elif "ADDRESS DETAILS (PRESENT ADDRESS)" in item or "(PRESENT ADDRESS)" in item:
                 current_section = "present"

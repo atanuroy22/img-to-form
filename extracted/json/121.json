@@ -1,0 +1,103 @@
+{
+    "formStart": {
+        "MBBS COURSE IN SESSION": "2024 - 2029",
+        "form_no": "121"
+    },
+    "studentDetails": {
+        "student_name": "PUJA SAHA",
+        "student_blood_group": "A+VE",
+        "student_dob": "18.10.2024",
+        "student_place_of_dob": "ALIPURDUAR",
+        "student_contact_no": "8609406684",
+        "student_nationality": "INDIAN",
+        "student_marital": "UNMARRIED",
+        "student_cast": "GENERAL",
+        "student_gender": "FEMALE",
+        "student_religion": "HINDU",
+        "student_mothertongue": "BENGALI",
+        "student_email": "PUJASAHAA0018 @ GMAIL.COM"
+    },
+    "permanent": {
+        "permenent_address": "48/26 MISSION PARA ROAD",
+        "permenent_post_office": "RAHARA",
+        "permenent_police_station": "KHARD AHA",
+        "permenent_district": "NORTH 24 PGNS",
+        "permenent_state": "WEST BENGAL",
+        "permenent_pincode": "700118"
+    },
+    "present": {
+        "present_address": "RANA PRATAP ROAD SAHA NIKETAN",
+        "present_post_office": "SAKTINAGAR",
+        "present_police_station": "KOTWALI",
+        "present_district": "NADIA",
+        "present_state": "WEST BENGAL",
+        "present_pincode": "741102"
+    },
+    "parentDetails": {
+        "father_name": "PRABIR SAHA",
+        "father_occupation": "SERVICE",
+        "father_mobile_no": "9183745145",
+        "father_email_id": "SPUJA. NEW @ GMAIL.COM",
+        "mother_name": "SEULI SAHA",
+        "mother_occupation": "HOME MAKER",
+        "mother_mobile_no": "9851144647",
+        "mother_email_id": "PUJA. SAHA @ SIGMENTECH.COM"
+    },
+    "localGuardian": {
+        "guardian_name": "SUJIT DAY",
+        "guardian_relationship": "UNCLE",
+        "guardian_mobile": "9876543210",
+        "guardian_email": "SUJIT.DAY@GMAIL.COM",
+        "guardian_address": "JDM GALAXY, FEEDER ROAD",
+        "guardian_occupation": "BUSINESS",
+        "guardian_post_office": "BELGHARIA",
+        "guardian_police_station": "DUNLOP",
+        "guardian_district": "NADIA",
+        "guardian_state": "BIHAR",
+        "guardian_pincode": "700008"
+    },
+    "qualification": {
+        "application_date": "25.09.2024",
+        "accademic_session": "2024-29",
+        "programme_study": "MEDICAL",
+        "seat_allotment": "56"
+    },
+    "netug": {
+        "neet_application_no": "46BCD",
+        "neet_roll_no": "124",
+        "neet_total_marks": "666",
+        "neet_percentile": "77",
+        "neet_category": "GENERAL",
+        "neet_quota": "ECONOMY",
+        "neet_rank": "55TH"
+    },
+    "xii": {
+        "board[0]": "W.B.U.T",
+        "cgpa[0]": "86",
+        "year_of_pass[0]": "2023"
+    },
+    "x": {
+        "board[1]": "W.B.S.E",
+        "cgpa[1]": "76",
+        "year_of_pass[1]": "2011"
+    },
+    "physics": {
+        "marks[0]": "55",
+        "total_marks[0]": "111",
+        "percentage[0]": "86"
+    },
+    "chemistry": {
+        "marks[1]": "66",
+        "total_marks[1]": "222",
+        "percentage[1]": "56"
+    },
+    "biology": {
+        "marks[2]": "77",
+        "total_marks[2]": "333",
+        "percentage[2]": "96"
+    },
+    "declaration": {
+        "candidate_signature": "PUJA SAHA",
+        "submission_date": "25.09.2024"
+    }
+}

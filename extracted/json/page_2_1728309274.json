@@ -14,19 +14,19 @@
         "student_gender": "FEMALE",
         "student_religion": "HINDU",
         "student_mothertongue": "BENGALI",
-        "student_email": "PUJASHAHA0018@GMAIL.COM"
+        "student_email": "PUJASAHA0018 @ GMAIL.COM"
     },
     "permenent": {
         "permenent_address": "48/26 MISSION PARA ROAD",
         "permenent_post_office": "RAHARA",
-        "permenent_police_station": "KHARDADHA",
+        "permenent_police_station": "KHARD AHA",
         "permenent_district": "NORTH 24 PGNS",
         "permenent_state": "WEST BENGAL",
         "permenent_pincode": "700118"
     },
     "present": {
         "present_address": "RANA PRATAP ROAD SAHA NIKETAN",
-        "present_post_office": "SAKTINAGAR",
+        "present_post_office": "SAKTIN AGAR",
         "present_police_station": "KOTWALI",
         "present_district": "NADIA",
         "present_state": "WEST BENGAL",
@@ -35,23 +35,23 @@
     "parentDetails": {
         "father_name": "PRABIR SAHA",
         "father_occupation": "SERVICE",
-        "father_mobile_no": "9183 745145",
-        "father_email_id": "SPUJA.NEW@GMAIL.COM",
+        "father_mobile_no": "9183745145",
         "mother_name": "SEULI SAHA",
         "mother_occupation": "HOME MAKER",
         "mother_mobile_no": "9851144647",
-        "mother_email_id": "PUJA.SAHA@SIGMENTECH.COM"
+        "mother_email_id": "SPUJA.NEW @ GMAIL.COM",
+        "guardian_email": "PUJA.SAHA @ SIGMENTECH.COM"
     },
     "localGuardian": {
         "guardian_name": "SOORAV NEOGI",
         "guardian_relationship": "FRIEND",
-        "guardian_mobile": "8617766814",
+        "guardian_mobile": "8617766841",
         "guardian_email": "MNEOGI@PORN.COM",
-        "guardian_address": "KOLKATA DUTTA PUKUR BEHALA",
-        "guardian_occupation": "& NSS ADMIN",
+        "guardian_address": "KOLKATA, DUTTA PUKUR, BEHALA",
+        "guardian_occupation": "NSS ADMIN",
         "guardian_post_office": "BEHALA",
         "guardian_police_station": "BEHALA",
-        "guardian_district": "SOUTH24 PARGANAS",
+        "guardian_district": "SOUTH 24 PARGANAS",
         "guardian_state": "WEST BENGAL",
         "guardian_pincode": "712258"
     },
@@ -65,38 +65,38 @@
         "neet_application_no": "U12050",
         "neet_roll_no": "2078",
         "neet_total_marks": "100",
-        "neet_percentile": "20%",
+        "neet_percentile": "20/",
         "neet_category": "TEST CAT",
         "neet_quota": "",
         "neet_rank": "22"
     },
     "xii": {
         "board_1": "ARAMBAGH HIGH SCHOOL",
-        "cgpa_1": "21%",
+        "cgpa_1": "21/",
         "year_of_pass_1": "2008"
     },
     "x": {
         "board_0": "ARAMBAGH HIGH SCHOOL",
-        "cgpa_0": "27%",
+        "cgpa_0": "21/",
         "year_of_pass_0": "2009"
     },
     "physics": {
         "marks_0": "25",
         "total_marks_0": "100",
-        "percentage_0": "21%"
+        "percentage_0": "21/"
     },
     "chemistry": {
         "marks_1": "100",
         "total_marks_1": "150",
-        "percentage_1": "55%"
+        "percentage_1": "55/"
     },
     "biology": {
         "marks_2": "95",
         "total_marks_2": "100",
-        "percentage_2": "95%"
+        "percentage_2": "95/"
     },
     "declaration": {
-        "candidate_signature": "SUVENDU PATRO.",
+        "candidate_signature": "SUHENDU PATA.",
         "submission_date": "24/8/2002"
     }
 }
