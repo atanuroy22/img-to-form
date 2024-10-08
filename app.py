@@ -65,7 +65,7 @@ def extract_text_from_image(image_path):
             url_api,
             files={"image.jpg": file_bytes},
             data={
-                "apikey": "K83686776688957",
+                "apikey": "",
                 "language": "eng",
                 "isOverlayRequired": True,
                 "detectOrientation": True,
@@ -224,8 +224,8 @@ def upload():
         os.makedirs('./uploads')
 
         # Set API key for front upload
-        os.environ['GEMINI_AI_API_KEY_1'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
-        os.environ['GEMINI_AI_API_KEY_2'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
+        os.environ['GEMINI_AI_API_KEY_1'] = ''#
+        os.environ['GEMINI_AI_API_KEY_2'] = ''#
         API_KEY_1 = os.environ['GEMINI_AI_API_KEY_1']
         API_KEY_2 = os.environ['GEMINI_AI_API_KEY_2']
         genai.configure(api_key=API_KEY_1)
@@ -359,8 +359,8 @@ def upload_back():
         os.makedirs('./uploads')
 
         # Set API key for back upload
-        os.environ['GEMINI_AI_API_KEY_1'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
-        os.environ['GEMINI_AI_API_KEY_2'] = 'AIzaSyDdfo2NmJDEzzPcnfdUyn9LD4NAFUE2efI'#
+        os.environ['GEMINI_AI_API_KEY_1'] = ''#
+        os.environ['GEMINI_AI_API_KEY_2'] = ''#
         API_KEY_1 = os.environ['GEMINI_AI_API_KEY_1']
         API_KEY_2 = os.environ['GEMINI_AI_API_KEY_2']
         genai.configure(api_key=API_KEY_1)
@@ -729,7 +729,7 @@ def extract_text_from_back_image(image_path):
             url_api,
             files={"image.jpg": file_bytes},
             data={
-                "apikey": "K83686776688957",
+                "apikey": "",
                 "language": "eng",
                 "isOverlayRequired": True,
                 "detectOrientation": True,
