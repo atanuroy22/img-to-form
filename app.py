@@ -28,7 +28,7 @@ def extract_text_with_gemini(image_path):
         print(f"Retrieved file '{file.display_name}' as: {sample_file.uri}")
         
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-        response = model.generate_content([sample_file, "Extract only key-value pairs from the text, keeping the headers as they appear in the form. Ensure each key-value pair is on a separate line, and if keys are repeated, append _1, _2, etc.  Do not include any non key-value pair texts. Scan row-wise. Keep all key-value pairs under their respective headers until the next header starts. Give the form number twice. Please ensure the output is accurate with correct spelling and follows the instructions precisely."])
+        response = model.generate_content([sample_file, "Extract only key-value pairs from the text, keeping the headers as they appear in the form. Ensure each key-value pair is on a separate line, and if keys are repeated, append _1, _2, etc.  Do not include any non key-value pair texts. Scan row-wise. Keep all key-value pairs under their respective headers until the next header starts. Give the form number twice at top in the output. Please ensure the output is accurate with correct spelling and follows the instructions precisely."])
         return response.text
     except Exception as e:
         print(f"Gemini extraction failed: {e}")
@@ -327,10 +327,11 @@ def upload():
                         # Delete the uploads directory if it exists    
                         if os.path.exists('./uploads'):  
                             shutil.rmtree('./uploads')
-                        return jsonify({"status": 400, "message": {'msg':'Failed to extract text from OCR Space.'}}), 400
+                        return jsonify({"status": "500","data": [],"message": {'msg':'Failed to extract text from OCR Space.'}}), 200
                         
         else:
             return jsonify({"status": "500","data": [],"message": {"msg": "Select Page 1"}}), 200
+        
     except Exception as e:
         print(f"Error during extraction: {e}")
         if os.path.exists(file_path):  # Delete the uploaded file if it exists
@@ -338,7 +339,7 @@ def upload():
         # Delete the uploads directory if it exists    
         if os.path.exists('./uploads'):  
             shutil.rmtree('./uploads')
-        return jsonify({"status": 400, "message": {'msg':'An error occurred during processing.'}}), 500
+        return jsonify({"status": "500","data": [], "message": {'msg':'An error occurred during processing.'}}), 200
             
     finally:
         # Delete the temporary image file after processing
@@ -498,7 +499,7 @@ def upload_back():
                         # Delete the uploads directory if it exists    
                         if os.path.exists('./uploads'):  
                             shutil.rmtree('./uploads')
-                        return jsonify({"status": 400, "message": {'msg':'Failed to extract text from OCR Space.'}}), 400
+                        return jsonify({"status": "500","data": [],"message": {'msg':'Failed to extract text from OCR Space.'}}), 200
         else:
             return jsonify({"status": "500","data": [],"message": {"msg": "Select Page 2"}}), 200
     except Exception as e:
@@ -509,7 +510,7 @@ def upload_back():
         # Delete the uploads directory if it exists    
         if os.path.exists('./uploads'):  
             shutil.rmtree('./uploads')
-        return jsonify({"status": 400, "message": {'msg':'An error occurred during processing.'}}), 500
+        return jsonify({"status": "500","data": [], "message": {'msg':'An error occurred during processing.'}}), 200
     finally:
         # Delete the temporary image file after processing
         if 'file_path' in locals() and os.path.exists(file_path):
@@ -698,8 +699,8 @@ def upload_back():
             response_data = {
                 "status": 200,
                 "message": {'msg':'Second page uploaded successfully!'},
-                "img": {'img': f"public/uploads/student_image/{key}_img.jpg" },
-                "sig": {'sig': f"public/uploads/student_signature/{key}_sig.jpg" },
+                "img": {'img': f"uploads/student_image/{key}_img.jpg" },
+                "sig": {'sig': f"uploads/student_signature/{key}_sig.jpg" },
                 "data": loaded_json
             }
             # with open('data_final.json', 'w', encoding='utf-8') as final_json_file:
@@ -919,10 +920,12 @@ def index():
         return render_template('index.php')
     except Exception as e:
         print(f"Error rendering index: {e}")
-        return "An error occurred", 500
+        return "An error occurred", 200
 @app.route('/favicon.ico')
 def favicon():
     return '', 200  
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=6003)
+    # Allow requests from specific origins
+    #CORS(app, resources={r"/*": {"origins": "https://jmn.sit.sigmentechnologies.com"}})
