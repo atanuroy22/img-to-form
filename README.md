@@ -120,14 +120,6 @@ Respond in this JSON format:
 
 Gemini replies with structured JSON, which is then shown to the user and can be downloaded.
 
-### Upload Page
-
-![Upload Interface](images/upload_interface.png)
-
-### Output Preview
-
-![Extracted Data](images/output_result.png)
-
 
 ## 🤝 Contributing
 
