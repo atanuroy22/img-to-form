@@ -2,14 +2,14 @@
 
 # 🖼️ img-to-form
 
-**img-to-form** is a smart web app that extracts structured data from uploaded images of forms or documents using OCR and enhances the results using Google Gemini 1.5. The application returns a JSON output with identified fields such as name, phone number, email, DOB, and more.
+img-to-form is a smart web app that extracts structured data from uploaded images of forms or documents using OCR and enhances the results using Google Gemini 1.5. The application returns a JSON output with identified fields such as name, phone number, email, DOB, and more.
 
 
 ## 🚀 Features
 
 - 📸 Upload images (JPG, PNG, etc.) of scanned forms or handwritten documents.
-- 🔍 Extract raw text using **Tesseract OCR**.
-- 🧠 Use **Google Gemini 1.5** to structure, clean, and understand the extracted text.
+- 🔍 Extract raw text using Tesseract OCR.
+- 🧠 Use Google Gemini 1.5 to structure, clean, and understand the extracted text.
 - 📋 Display the parsed results in a clean HTML view.
 - 💾 Download structured output as a `data.json` file.
 
@@ -36,7 +36,7 @@ Create a `.env` file in your root directory with:
 GEMINI_API_KEY=your_google_gemini_api_key
 ````
 
-Ensure that this file is **not committed to GitHub**.
+Ensure that this file is not committed to GitHub.
 
 ---
 
@@ -99,7 +99,7 @@ Visit [http://localhost:5000](http://localhost:5000) to use the app.
 
 ## 🧠 How Gemini Works in This App
 
-After extracting raw text from an image using Tesseract, the text is sent to **Gemini 1.5** with a prompt like:
+After extracting raw text from an image using Tesseract, the text is sent to Gemini 1.5 with a prompt like:
 
 ```python
 prompt = f"""
