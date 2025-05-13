@@ -1,6 +1,5 @@
 ---
 
-````markdown
 # 🖼️ img-to-form
 
 **img-to-form** is a smart web app that extracts structured data from uploaded images of forms or documents using OCR and enhances the results using Google Gemini 1.5. The application returns a JSON output with identified fields such as name, phone number, email, DOB, and more.
